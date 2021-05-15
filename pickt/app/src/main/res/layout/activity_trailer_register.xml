@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrailerRegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:textColor="#454545"
+            android:lineSpacingExtra="-11sp"
+            tools:text="차량 등록하기"
+            tools:ignore="MissingConstraints" />
+
+        <fragment
+            android:id="@+id/TrailerImage"
+            android:name="com.example.pickt.TrailerImageFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--fragment
+            android:id="@+id/TrailerInfo"
+            android:name="com.example.pickt.TrailerInfoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingClass" /-->
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
