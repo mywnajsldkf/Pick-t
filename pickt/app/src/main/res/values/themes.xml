@@ -14,5 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>      <!--타이틀바 숨기기-->
         <item name="windowActionBar">false</item>
+        <item name="colorAccent">@color/cursorColorNormal</item>
+        <item name="colorControlActivated">@color/cursorColorActivate</item>
     </style>
 </resources>

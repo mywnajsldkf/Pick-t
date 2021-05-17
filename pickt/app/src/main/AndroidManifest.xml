@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pickt">
-        <!--activity android:name=".TrailerRegisterActivity"></activity-->
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".TrailerRegisterActivity">
+        <!--activity android:name=".SinginActivity"></activity-->
+        <activity android:name=".TrailerRegisterActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SinginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

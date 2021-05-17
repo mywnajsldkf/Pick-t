@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="31dp"
+    android:layout_marginRight="31dp"
+    android:orientation="vertical"
+    tools:context=".SinginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="46dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-16sp"
+            android:textColor="#454545"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:text="Sign In">
+        </TextView>
+        <View
+            android:layout_width="82dp"
+            android:layout_height="5dp"
+            android:background="#406c3a"
+            android:layout_marginTop="11.5dp">
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="280dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/userID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID"
+            android:fontFamily="sans-serif"
+            android:textColorHint="#6e6e6e"
+            android:singleLine="true"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
+        <EditText
+            android:id="@+id/userPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:fontFamily="sans-serif"
+            android:textColorHint="#6e6e6e"
+            android:singleLine="true"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7.5dp"
+            android:layout_gravity="right"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#6e6e6e"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:text="Forget ID / Password?"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="442dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/singinButton"
+            android:text="Sign In"
+            android:layout_width="135dp"
+            android:layout_height="44dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:background="@drawable/small_button">
+        </Button>
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="11sp"
+            android:text="Pick-T 계정이 없으신가요?">
+        </TextView>
+        <TextView
+            android:id="@+id/signupPage"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#406c3a"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            tools:text="Sign up"
+            tools:ignore="MissingConstraints">
+        </TextView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
