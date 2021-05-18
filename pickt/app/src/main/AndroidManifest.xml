@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pickt">
-        <activity android:name=".SignupActivity"></activity>
-        <!-- activity android:name=".SinginActivity"></activity -->
+        <activity android:name=".RegisterLicenseActivity"></activity>
+        <activity android:name=".SignupActivity" /> <!-- activity android:name=".SinginActivity"></activity -->
         <activity android:name=".TrailerRegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SinginActivity">

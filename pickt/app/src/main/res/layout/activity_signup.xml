@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="31dp"
@@ -140,7 +141,9 @@
             android:textColor="#ffffff"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="8sp"
-            android:background="@drawable/small_button">
+            android:onClick="nextButton"
+            android:background="@drawable/small_button"
+            tools:ignore="OnClick">
         </Button>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

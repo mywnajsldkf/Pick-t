@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="29dp"
+    android:layout_marginRight="29dp"
+    android:orientation="vertical"
+    tools:context=".RegisterLicenseActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="63dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#454545"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-1sp"
+            android:text="운전면허를 등록해주세요"
+            tools:ignore="MissingConstraints">
+        </TextView>
+        <ImageView
+            android:id="@+id/addImage"
+            android:layout_width="226dp"
+            android:layout_height="114dp"
+            android:layout_marginTop="110dp"
+            android:background="#e4e4e4"
+            android:layout_gravity="center">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#454545"
+            android:text="이렇게 찍어주세요">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#454545"
+            android:text="- 영역에 맞춰주세요.">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#454545"
+            android:text="- 카메라 초점을 잘 맞춰주세요.">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#454545"
+            android:text="- 어두운 배경에서 빛반사 없이 찍어주세요.">
+        </TextView>
+        <Button
+            android:id="@+id/singinButton"
+            android:text="운전면허증 촬영"
+            android:layout_width="245dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="44dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:background="@drawable/large_button">
+        </Button>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
