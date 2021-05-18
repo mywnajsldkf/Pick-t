@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="46dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
             android:textColor="#454545"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:text="Sign In">
+            android:text="Sign Up">
         </TextView>
         <View
             android:layout_width="82dp"
@@ -36,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="252.5dp"
         android:orientation="vertical">
         <EditText
             android:id="@+id/userID"
@@ -53,36 +54,84 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
             android:fontFamily="sans-serif"
             android:textColorHint="#6e6e6e"
             android:singleLine="true"
+            android:inputType="textPassword"
             android:theme="@style/Theme.Pickt">
         </EditText>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/confirmPassword"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7.5dp"
-            android:layout_gravity="right"
+            android:hint="Confirm Password"
             android:fontFamily="sans-serif"
+            android:textColorHint="#6e6e6e"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
+        <TextView
+            android:id="@+id/checkPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="#b40000"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="11sp"
+            android:text="password가 일치하지 않습니다.">
+        </TextView>
+        <EditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#6e6e6e"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="8sp"
-            android:textColor="#6e6e6e"
-            android:textSize="16sp"
+            android:hint="사용자 이름"
+            android:singleLine="true"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
+        <EditText
+            android:id="@+id/userNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:textStyle="normal"
-            android:text="Forget ID / Password?"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="442dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+            android:textSize="16sp"
+            android:textColor="#6e6e6e"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:hint="핸드폰 번호"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
+        <EditText
+            android:id="@+id/userEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#6e6e6e"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
+            android:hint="E-mail"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"
+            android:theme="@style/Theme.Pickt">
+        </EditText>
         <Button
-            android:id="@+id/singinButton"
-            android:text="Sign In"
+            android:layout_gravity="center"
+            android:id="@+id/signupButton"
+            android:text="Next"
+            android:layout_marginTop="62.5dp"
             android:layout_width="135dp"
             android:layout_height="44dp"
             android:fontFamily="sans-serif"
@@ -93,32 +142,5 @@
             android:lineSpacingExtra="8sp"
             android:background="@drawable/small_button">
         </Button>
-
-        <TextView
-            android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:textStyle="normal"
-            android:textSize="13sp"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="11sp"
-            android:text="Pick-T 계정이 없으신가요?">
-        </TextView>
-        <TextView
-            android:id="@+id/signupPage"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#406c3a"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="8sp"
-            android:onClick="signupButton"
-            android:text="Sign up"
-            tools:ignore="MissingConstraints,OnClick">
-        </TextView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
