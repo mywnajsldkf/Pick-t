@@ -41,9 +41,4 @@
             tools:ignore="MissingClass" /-->
 
     </LinearLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
