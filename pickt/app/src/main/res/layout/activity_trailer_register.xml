@@ -24,14 +24,16 @@
             android:textSize="35sp"
             android:textColor="#454545"
             android:lineSpacingExtra="-11sp"
-            tools:text="차량 등록하기"
+            android:text="차량 등록하기"
             tools:ignore="MissingConstraints" />
 
         <fragment
-            android:id="@+id/TrailerImage"
+            android:id="@+id/TrailerImageFragment"
             android:name="com.example.pickt.TrailerImageFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/activity_main"/>
 
         <!--fragment
             android:id="@+id/TrailerInfo"
