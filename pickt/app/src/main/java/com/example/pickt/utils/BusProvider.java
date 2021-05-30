@@ -1,5 +1,4 @@
 package com.example.pickt.utils;
-
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 

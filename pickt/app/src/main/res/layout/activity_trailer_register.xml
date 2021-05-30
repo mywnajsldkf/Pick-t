@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrailerRegisterActivity">
+    android:id="@+id/RegisterTrailerActivity"
+    tools:context=".activity.TrailerRegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,26 +27,5 @@
             android:lineSpacingExtra="-11sp"
             android:text="차량 등록하기"
             tools:ignore="MissingConstraints" />
-
-        <fragment
-            android:id="@+id/TrailerImageFragment"
-            android:name="com.example.pickt.TrailerImageFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout="@layout/activity_main"/>
-
-        <!--fragment
-            android:id="@+id/TrailerInfo"
-            android:name="com.example.pickt.TrailerInfoFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="MissingClass" /-->
-
     </LinearLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

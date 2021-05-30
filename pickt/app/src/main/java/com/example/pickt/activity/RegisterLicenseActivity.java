@@ -1,4 +1,6 @@
-package com.example.pickt;
+package com.example.pickt.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,16 +14,16 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-
 import java.io.File;
 import java.io.IOException;
+import java.security.Permission;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.example.pickt.R;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 public class RegisterLicenseActivity extends AppCompatActivity {
 
@@ -40,29 +42,19 @@ public class RegisterLicenseActivity extends AppCompatActivity {
 
         getCameraPermission();
 
-        findViewById(R.id.licenseButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.licenseButton).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(final View view) {
+            public void onClick(final View view){
                 final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                getMenuInflater().inflate(R.menu.picturepopup, popupMenu.getMenu());
+                getMenuInflater().inflate(R.menu.picture, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.camera){
-                            /*
-                            if (isPermission) {
-                                // takePhoto();
-                            }
-                            else Toast.makeText(RegisterLicenseActivity.this, getResources().getString(R.string.permission_1), Toast.LENGTH_SHORT).show();
-                             */
+
                         }
-                        else if(item.getItemId() == R.id.gallery){
-                            /*
-                            if (isPermission){
-                                //  getGalleryImage();
-                            }
-                            else Toast.makeText(RegisterLicenseActivity.this, getResources().getString(R.string.permission_2), Toast.LENGTH_SHORT).show();
-                             */
+                        else if (item.getItemId() == R.id.gallery){
+
                         }
                         return false;
                     }
@@ -70,7 +62,6 @@ public class RegisterLicenseActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
     }
 
     @Override
@@ -100,7 +91,6 @@ public class RegisterLicenseActivity extends AppCompatActivity {
                     cursor.close();
                 }
             }
-
         }
     }
 
@@ -144,7 +134,6 @@ public class RegisterLicenseActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                // 권한 요청 실패
 
             }
         };
@@ -155,11 +144,5 @@ public class RegisterLicenseActivity extends AppCompatActivity {
                 .setDeniedMessage(getResources().getString(R.string.permission_1))
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
-    }
-
-    private void getGalleryImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        startActivityForResult(intent, PICK_FROM_ALBUM);
     }
 }
