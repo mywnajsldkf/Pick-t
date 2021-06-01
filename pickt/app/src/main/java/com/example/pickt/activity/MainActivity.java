@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.pickt.R;
 import com.naver.maps.geometry.LatLng;
@@ -26,7 +27,7 @@ import com.naver.maps.map.util.FusedLocationSource;
 
 import java.util.regex.MatchResult;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener {
     private static final String TAG="MainActivity";
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static final String[] PERMISSIONS = {
@@ -112,8 +113,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         chosunMarker.setPosition(new LatLng(35.141663619952006, 126.93194999518909));
         chosunMarker.setMap(mNaverMap);
 
+        // 마커 클릭 했을 때 기능 구현
+        terminalMarker.setOnClickListener(this);
+        bukguMarker.setOnClickListener(this);
+        chonnamMarker.setOnClickListener(this);
+        stationMarker.setOnClickListener(this);
+        teachingMarker.setOnClickListener(this);
+        techMarker.setOnClickListener(this);
+        chosunMarker.setOnClickListener(this);
 
         // 권한 확인 결과는 onRequestPermissionResult 콜백 메서드 호출
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public boolean onClick(@NonNull Overlay overlay) {
+        if (overlay instanceof Marker){
+            Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다.", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return false;
     }
 }
