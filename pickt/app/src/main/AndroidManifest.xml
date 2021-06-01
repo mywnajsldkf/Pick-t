@@ -21,9 +21,9 @@
         <activity android:name=".activity.SigninActivity"></activity>
         <activity android:name=".activity.TrailerRegisterActivity"/>
         <activity android:name=".activity.SignupActivity" />
-        <activity android:name=".activity.RegisterLicenseActivity" />
-        <!--activity android:name=".activity.MainActivity"/-->
-        <activity android:name=".activity.MainActivity">
+        <!--activity android:name=".activity.RegisterLicenseActivity" /-->
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.RegisterLicenseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

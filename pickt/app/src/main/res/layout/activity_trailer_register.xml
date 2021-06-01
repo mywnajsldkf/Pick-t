@@ -28,8 +28,4 @@
             android:text="차량 등록하기"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
-<<<<<<< HEAD
 </androidx.constraintlayout.widget.ConstraintLayout>
-=======
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> 00388e9d4fad2e27b0caf5e0b8d8c651013f8514
