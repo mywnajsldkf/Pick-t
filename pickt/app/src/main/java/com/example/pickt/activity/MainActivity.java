@@ -19,11 +19,14 @@ import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
-{
+import java.util.regex.MatchResult;
+
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG="MainActivity";
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static final String[] PERMISSIONS = {
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     };
     private NaverMap mNaverMap;
     private FusedLocationSource fusedLocationSource;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +72,46 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(@NonNull NaverMap naverMap) {
         Log.d(TAG, "onMapReady");
 
-        /*
-        Marker marker = new Marker();
-        marker.setPosition(new LatLng(37.5670135, 126.9783740));
-        marker.setMap(naverMap);
-         */
-
         // NaverMap 객체 받아서 NaverMap 객체에 위치 소스 지정
         mNaverMap = naverMap;
-        mNaverMap.setLocationSource(fusedLocationSource);
-        mNaverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+        naverMap.setLocationSource(fusedLocationSource);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+        // 광주광천터미널
+        Marker terminalMarker = new Marker();
+        terminalMarker.setPosition(new LatLng(35.16163259005393, 126.87979003936667));
+        terminalMarker.setMap(mNaverMap);
+
+        // 북구청
+        Marker bukguMarker = new Marker();
+        bukguMarker.setPosition(new LatLng(35.17460731148258, 126.9120247067833));
+        bukguMarker.setMap(mNaverMap);
+
+        // 전남대학교
+        Marker chonnamMarker = new Marker();
+        chonnamMarker.setPosition(new LatLng(35.17644198294752, 126.90570575580902));
+        chonnamMarker.setMap(mNaverMap);
+
+        // 광주역
+        Marker stationMarker = new Marker();
+        stationMarker.setPosition(new LatLng(35.1641487108431, 126.90972308169597));
+        stationMarker.setMap(mNaverMap);
+
+        // 광주교육대학교
+        Marker teachingMarker = new Marker();
+        teachingMarker.setPosition(new LatLng(35.165226695812294, 126.9263511528607));
+        teachingMarker.setMap(mNaverMap);
+
+        // 광주공고
+        Marker techMarker = new Marker();
+        techMarker.setPosition(new LatLng(35.19028220982834, 126.89737194121555));
+        techMarker.setMap(mNaverMap);
+
+        // 조선대학교
+        Marker chosunMarker = new Marker();
+        chosunMarker.setPosition(new LatLng(35.141663619952006, 126.93194999518909));
+        chosunMarker.setMap(mNaverMap);
+
 
         // 권한 확인 결과는 onRequestPermissionResult 콜백 메서드 호출
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
