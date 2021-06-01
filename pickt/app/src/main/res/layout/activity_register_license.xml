@@ -7,7 +7,7 @@
     android:layout_marginLeft="29dp"
     android:layout_marginRight="29dp"
     android:orientation="vertical"
-    tools:context=".RegisterLicenseActivity">
+    tools:context=".activity.RegisterLicenseActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

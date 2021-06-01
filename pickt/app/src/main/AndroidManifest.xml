@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pickt">
+    <!-- camera, gallery -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -9,20 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pickt">
-        <activity android:name=".RegisterLicenseActivity"></activity>
-        <activity android:name=".SignupActivity" /> <!-- activity android:name=".SinginActivity"></activity -->
-        <activity android:name=".TrailerRegisterActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SinginActivity">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="jhf1v21ygp"/>
+        <activity android:name=".activity.SigninActivity"></activity>
+        <activity android:name=".activity.TrailerRegisterActivity"/>
+        <activity android:name=".activity.SignupActivity" />
+        <activity android:name=".activity.RegisterLicenseActivity" />
+        <!--activity android:name=".activity.MainActivity"/-->
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-    <!-- camera, gallery -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>
