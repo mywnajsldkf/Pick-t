@@ -15,70 +15,78 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="63dp"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:textColor="#454545"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="-1sp"
-            android:text="운전면허를 등록해주세요"
-            tools:ignore="MissingConstraints">
-        </TextView>
-        <ImageView
-            android:id="@+id/addImage"
-            android:layout_width="240dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="90dp"
-            android:background="#e4e4e4"
-            android:layout_gravity="center">
-        </ImageView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="70dp"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="#454545"
-            android:text="이렇게 찍어주세요">
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="9sp"
+            android:text="면허 종류"
+            tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
-            android:textSize="15sp"
+            android:textSize="20dp"
+            android:text="1종 보통">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:textColor="#454545"
-            android:text="- 영역에 맞춰주세요.">
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="9sp"
+            android:text="면허 번호"
+            tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
-            android:textSize="15sp"
+            android:textSize="20dp"
+            android:text="서울01-123456078">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:textColor="#454545"
-            android:text="- 카메라 초점을 잘 맞춰주세요.">
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="9sp"
+            android:text="고유 번호"
+            tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
-            android:textSize="15sp"
-            android:textColor="#454545"
-            android:text="- 어두운 배경에서 빛반사 없이 찍어주세요.">
+            android:textSize="20dp"
+            android:text="8271AO">
         </TextView>
+
         <Button
             android:id="@+id/licenseButton"
-            android:text="운전면허증 촬영"
+            android:text="제출 하기"
             android:layout_width="245dp"
             android:layout_height="44dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="70dp"
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
