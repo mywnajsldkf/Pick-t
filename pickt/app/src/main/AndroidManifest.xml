@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,15 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pickt">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="jhf1v21ygp"/>
         <activity android:name=".activity.SigninActivity"></activity>
-        <!--activity android:name=".activity.TrailerRegisterActivity" /-->
+        <activity android:name=".activity.TrailerRegisterActivity"/>
         <activity android:name=".activity.SignupActivity" />
         <activity android:name=".activity.RegisterLicenseActivity" />
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.TrailerRegisterActivity">
+        <!--activity android:name=".activity.MainActivity"/-->
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
