@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:gravity="center_horizontal"
@@ -26,9 +26,8 @@
             android:textColor="#454545"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="-1sp"
-            android:text="차량 정보"/>
+            android:text="차량 설명"/>
 
-        <!--차량이름-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,31 +38,24 @@
             android:textColor="#a7000000"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="8sp"
-            android:text="차량 대여전 대여자가 사전에 정보를 파악할 수 있도록 확인해주세요. ">
+            android:text="자신의 차량을 소개해주세요.">
         </TextView>
 
-        <!--면허 종류-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="#454545"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="9sp"
-            android:text="차량 이름">
-        </TextView>
+        <!--차량 소개-->
         <EditText
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="2"
+            android:maxLines="10"
+            android:scrollbars="vertical"
             android:id="@+id/TrailerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-light"
-            android:hint="ex) 블루밴 마이크로 XA"
+            android:hint="자신의 차량을 소개해주세요."
             android:textColorHint="#a7000000"
-            android:maxLength="30"
+            android:maxLength="100"
             android:ellipsize="end"
             android:singleLine="true"
             android:letterSpacing="0.01"
@@ -72,39 +64,18 @@
             android:colorControlNormal="#2cdedede">
         </EditText>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32.5dp"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="#454545"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="9sp"
-            android:text="면허 종류">
-        </TextView>
-
-        <Spinner
-            android:id="@+id/licenseSpinner"
-            android:layout_marginTop="18dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"/>
-
         <Button
             android:id="@+id/ImageNextButton"
             android:layout_width="115dp"
             android:layout_height="41dp"
             android:layout_marginTop="100dp"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:background="@drawable/small_button"
             android:fontFamily="sans-serif"
             android:letterSpacing="0.03"
             android:lineSpacingExtra="-1sp"
-            android:text="다음"
+            android:text="등록하기"
             android:textSize="17sp"
             android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,6 +84,26 @@
         </TextView>
 
         <Spinner
+            android:id="@+id/parkingSpinner"
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32.5dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#454545"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="9sp"
+            android:text="대여점">
+        </TextView>
+
+        <Spinner
             android:id="@+id/licenseSpinner"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
@@ -91,10 +111,10 @@
             android:spinnerMode="dropdown"/>
 
         <Button
-            android:id="@+id/ImageNextButton"
+            android:id="@+id/InfoNextButton"
             android:layout_width="115dp"
             android:layout_height="41dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="right"
             android:background="@drawable/small_button"
             android:fontFamily="sans-serif"

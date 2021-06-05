@@ -24,6 +24,8 @@ import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
+import com.naver.maps.map.widget.CompassView;
+import com.naver.maps.map.widget.ScaleBarView;
 
 import java.util.regex.MatchResult;
 
@@ -77,6 +79,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mNaverMap = naverMap;
         naverMap.setLocationSource(fusedLocationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+        // UiSetting 객체를 받아온다.
+        UiSettings uiSettings = mNaverMap.getUiSettings();
+
+        // 나침판, 축척바, 줌버튼, 현위치 버튼을 활성화한다.
+        uiSettings.setCompassEnabled(false);
+        uiSettings.setScaleBarEnabled(false);
+        uiSettings.setZoomControlEnabled(false);
+        uiSettings.setLocationButtonEnabled(false);
+
 
         // 광주광천터미널
         Marker terminalMarker = new Marker();

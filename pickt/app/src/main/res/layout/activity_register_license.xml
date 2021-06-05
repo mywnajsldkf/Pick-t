@@ -27,16 +27,16 @@
         </TextView>
         <ImageView
             android:id="@+id/addImage"
-            android:layout_width="226dp"
-            android:layout_height="114dp"
-            android:layout_marginTop="110dp"
+            android:layout_width="240dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="90dp"
             android:background="#e4e4e4"
             android:layout_gravity="center">
         </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="90dp"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:textSize="20sp"
