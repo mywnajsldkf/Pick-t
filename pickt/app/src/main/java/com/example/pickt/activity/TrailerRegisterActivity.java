@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.pickt.R;
 import com.example.pickt.fragment.TrailerImageFragment;
 
 public class TrailerRegisterActivity extends AppCompatActivity {
+    public static final String TAG = "TrailerImageFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,5 +31,17 @@ public class TrailerRegisterActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // 기존에 RegisterActivity(TrailerRegisterActivity의 id)에서 다른 fragment로 교체한다.
         fragmentTransaction.replace(R.id.RegisterTrailerActivity,fragment).commit();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int request = requestCode;
+
+        /*
+        Fragment fragment = getSupportFragmentManager().findFragmentById(TAG);
+        fragment.onActivityResult(request, resultCode, data);
+         */
     }
 }

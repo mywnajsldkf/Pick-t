@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pickt">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- camera, gallery -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,24 +17,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pickt">
-        <activity android:name=".activity.RegisterLicenseResultActivity"></activity>
+        android:theme="@style/Theme.Pickt"
+        android:name="androidx.multidex.MultiDexApplication" >
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="jhf1v21ygp" />
 
         <activity android:name=".activity.SigninActivity" />
-        <activity android:name=".activity.TrailerRegisterActivity" />
-        <activity android:name=".activity.SignupActivity" /> <!-- activity android:name=".activity.RegisterLicenseActivity" / -->
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.RegisterLicenseActivity">
+        <!--activity android:name=".activity.TrailerRegisterActivity" /-->
+        <activity android:name=".activity.SignupActivity" />
+        <activity android:name=".activity.RegisterLicenseActivity"/>
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.RegisterLicenseResultActivity"/>
+        <activity android:name=".activity.TrailerRegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

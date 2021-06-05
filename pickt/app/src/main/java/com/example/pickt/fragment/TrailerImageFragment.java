@@ -5,15 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.text.Layout;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.pickt.R;
 import com.example.pickt.activity.TrailerRegisterActivity;
@@ -25,6 +29,7 @@ import java.io.InputStream;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 public class TrailerImageFragment extends Fragment {
 
@@ -44,7 +49,7 @@ public class TrailerImageFragment extends Fragment {
         super.onCreate(savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_trailer_image, container, false);
 
-        ImageView imageView = (ImageView)v.findViewById(R.id.addImage);
+        imageView = (ImageView)v.findViewById(R.id.addImage);
         imagePath = revertedImage;
 
         nextButton = (Button)v.findViewById(R.id.ImageNextButton);
@@ -53,14 +58,17 @@ public class TrailerImageFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 // 갤러리에서 사진 가져오기 창을 띄운다.
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 // 액티비티 실행 후 이벤트 정의
-                getActivity().startActivityForResult(intent, GET_GALLERY_IMAGE);
+
+                startActivityForResult(intent, GET_GALLERY_IMAGE);
             }
         });
-        
+
+
         // 다음 fragment로 이동
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,44 +76,29 @@ public class TrailerImageFragment extends Fragment {
                 ((TrailerRegisterActivity)getActivity()).replaceFragment(TrailerInfoFragment.newInstance());
             }
         });
+
         return v;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        byte[] image = null;
-        byte[] encodedImage = null;
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        Log.d(TAG,"onActivityResult()");
 
-        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK & data != null){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null){
             try {
                 InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 Bitmap img = BitmapFactory.decodeStream(inputStream);
-
-                img.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-                byte[] bytes = byteArrayOutputStream.toByteArray();
-                String revertedImage = Base64.encodeToString(bytes, Base64.DEFAULT);
-
-                setRevertedImage(revertedImage);
+                System.out.println("이미지 출력");
                 inputStream.close();
+                // 이미지 표시
                 imageView.setImageBitmap(img);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }catch (IOException e){
+            }catch (Exception e){
                 e.printStackTrace();
             }
         }
         else if (resultCode == RESULT_CANCELED){
-
+            Toast.makeText(getActivity(), "사진 선택 취소", Toast.LENGTH_LONG).show();
         }
-    }
-    private void setRevertedImage(String revertedImage){
-        this.revertedImage = revertedImage;
-    }
-
-    public String getRevertedImage(){
-        return revertedImage;
     }
 }
