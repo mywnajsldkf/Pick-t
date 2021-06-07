@@ -84,7 +84,7 @@
         </TextView>
 
         <Spinner
-            android:id="@+id/parkingSpinner"
+            android:id="@+id/licenseSpinner"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -104,7 +104,7 @@
         </TextView>
 
         <Spinner
-            android:id="@+id/licenseSpinner"
+            android:id="@+id/parkingSpinner"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"

@@ -26,16 +26,17 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="jhf1v21ygp" />
         <!--activity android:name=".activity.SigninActivity"/-->
-        <activity android:name=".activity.TrailerRegisterActivity"/>
+        <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.SignupActivity"/>
         <activity android:name=".activity.RegisterLicenseActivity"/>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.SigninActivity"/>
         <activity android:name=".activity.RegisterLicenseResultActivity"/>
-        <activity android:name=".activity.SigninActivity">
+        <activity android:name=".activity.TrailerRegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService" android:enabled="true" />
     </application>
 </manifest>
