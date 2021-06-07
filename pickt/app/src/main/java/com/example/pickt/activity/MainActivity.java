@@ -13,6 +13,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.pickt.R;
+import com.example.pickt.fragment.BukguFragment;
+import com.example.pickt.fragment.ChonnamFragment;
+import com.example.pickt.fragment.ChosunFragment;
+import com.example.pickt.fragment.StationFragment;
+import com.example.pickt.fragment.TeachingFragment;
+import com.example.pickt.fragment.TechFragment;
+import com.example.pickt.fragment.TerminalFragment;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.LocationTrackingMode;
@@ -27,35 +34,105 @@ import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.CompassView;
 import com.naver.maps.map.widget.ScaleBarView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.regex.MatchResult;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
+{
+    private MapView mapView;
+    private static NaverMap naverMap;
     private static final String TAG="MainActivity";
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static final String[] PERMISSIONS = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
-    private NaverMap mNaverMap;
     private FusedLocationSource fusedLocationSource;
+
+    // 마커 변수 선언 및 초기화
+    private Marker terminalMarker = new Marker();
+    private Marker bukguMarker = new Marker();
+    private Marker chonnamMarker = new Marker();
+    private Marker stationMarker = new Marker();
+    private Marker teachingMarker = new Marker();
+    private Marker techMarker = new Marker();
+    private Marker chosunMarker = new Marker();
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 지도 객체 생성
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        MapFragment mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
-        if (mapFragment == null){
-            mapFragment = mapFragment.newInstance();
-            fragmentManager.beginTransaction().add(R.id.map, mapFragment).commit();
-        }
+        //네이버 지도
+        mapView = (MapView) findViewById(R.id.map_view);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
-        // getMapAsync를 호출하여 비동기로 onMapReady 콜백 메서드 호출
-        // onMapReady에서 NaverMap 객체를 받음
-        mapFragment.getMapAsync(this);
+        terminalMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                TerminalFragment terminalFragment = new TerminalFragment();
+                terminalFragment.show(getSupportFragmentManager(), "TerminalFragment");
+                return false;
+            }
+        });
+
+        chonnamMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                ChonnamFragment chonnamFragment = new ChonnamFragment();
+                chonnamFragment.show(getSupportFragmentManager(), "ChonnamFragment");
+                return false;
+            }
+        });
+
+        bukguMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                BukguFragment bukguFragment = new BukguFragment();
+                bukguFragment.show(getSupportFragmentManager(), "BukguFragment");
+                return false;
+            }
+        });
+
+        stationMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                StationFragment stationFragment = new StationFragment();
+                stationFragment.show(getSupportFragmentManager(), "StationFragment");
+                return false;
+            }
+        });
+
+        teachingMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                TeachingFragment teachingFragment = new TeachingFragment();
+                teachingFragment.show(getSupportFragmentManager(), "TeachingFragment");
+                return false;
+            }
+        });
+
+        techMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                TechFragment techFragment = new TechFragment();
+                techFragment.show(getSupportFragmentManager(), "TechFragment");
+                return false;
+            }
+        });
+
+        chosunMarker.setOnClickListener(new Overlay.OnClickListener() {
+            @Override
+            public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                ChosunFragment chosunFragment = new ChosunFragment();
+                chosunFragment.show(getSupportFragmentManager(), "ChosunFragment");
+                return false;
+            }
+        });
 
         fusedLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
     }
@@ -66,84 +143,81 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // request code와 권한획득 여부 확인
         if (requestCode == PERMISSION_REQUEST_CODE){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                mNaverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+                naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
             }
         }
     }
 
     @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
-        Log.d(TAG, "onMapReady");
+    public void onMapReady(@NonNull NaverMap naverMap)
+    {
+        Log.d(TAG,"onMapReady");
+        this.naverMap = naverMap;
 
-        // NaverMap 객체 받아서 NaverMap 객체에 위치 소스 지정
-        mNaverMap = naverMap;
+        setMarker(terminalMarker, 35.16163259005393, 126.87979003936667);
+        setMarker(bukguMarker, 35.17460731148258, 126.9120247067833);
+        setMarker(chonnamMarker, 35.17644198294752, 126.90570575580902);
+        setMarker(stationMarker, 35.1641487108431, 126.90972308169597);
+        setMarker(teachingMarker, 35.165226695812294, 126.9263511528607);
+        setMarker(techMarker,35.19028220982834,126.89737194121555);
+        setMarker(chosunMarker, 35.141663619952006, 126.93194999518909);
+
         naverMap.setLocationSource(fusedLocationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+    }
 
-        // UiSetting 객체를 받아온다.
-        UiSettings uiSettings = mNaverMap.getUiSettings();
-
-        // 나침판, 축척바, 줌버튼, 현위치 버튼을 활성화한다.
-        uiSettings.setCompassEnabled(false);
-        uiSettings.setScaleBarEnabled(false);
-        uiSettings.setZoomControlEnabled(false);
-        uiSettings.setLocationButtonEnabled(false);
-
-
-        // 광주광천터미널
-        Marker terminalMarker = new Marker();
-        terminalMarker.setPosition(new LatLng(35.16163259005393, 126.87979003936667));
-        terminalMarker.setMap(mNaverMap);
-
-        // 북구청
-        Marker bukguMarker = new Marker();
-        bukguMarker.setPosition(new LatLng(35.17460731148258, 126.9120247067833));
-        bukguMarker.setMap(mNaverMap);
-
-        // 전남대학교
-        Marker chonnamMarker = new Marker();
-        chonnamMarker.setPosition(new LatLng(35.17644198294752, 126.90570575580902));
-        chonnamMarker.setMap(mNaverMap);
-
-        // 광주역
-        Marker stationMarker = new Marker();
-        stationMarker.setPosition(new LatLng(35.1641487108431, 126.90972308169597));
-        stationMarker.setMap(mNaverMap);
-
-        // 광주교육대학교
-        Marker teachingMarker = new Marker();
-        teachingMarker.setPosition(new LatLng(35.165226695812294, 126.9263511528607));
-        teachingMarker.setMap(mNaverMap);
-
-        // 광주공고
-        Marker techMarker = new Marker();
-        techMarker.setPosition(new LatLng(35.19028220982834, 126.89737194121555));
-        techMarker.setMap(mNaverMap);
-
-        // 조선대학교
-        Marker chosunMarker = new Marker();
-        chosunMarker.setPosition(new LatLng(35.141663619952006, 126.93194999518909));
-        chosunMarker.setMap(mNaverMap);
-
-        // 마커 클릭 했을 때 기능 구현
-        terminalMarker.setOnClickListener(this);
-        bukguMarker.setOnClickListener(this);
-        chonnamMarker.setOnClickListener(this);
-        stationMarker.setOnClickListener(this);
-        teachingMarker.setOnClickListener(this);
-        techMarker.setOnClickListener(this);
-        chosunMarker.setOnClickListener(this);
-
-        // 권한 확인 결과는 onRequestPermissionResult 콜백 메서드 호출
-        ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+    private void setMarker(Marker marker, double lat, double lng)
+    {
+        marker.setIconPerspectiveEnabled(true);
+        marker.setPosition(new LatLng(lat, lng));
+        marker.setMap(naverMap);
     }
 
     @Override
-    public boolean onClick(@NonNull Overlay overlay) {
-        if (overlay instanceof Marker){
-            Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다.", Toast.LENGTH_LONG).show();
-            return true;
-        }
-        return false;
+    public void onStart()
+    {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLowMemory()
+    {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
