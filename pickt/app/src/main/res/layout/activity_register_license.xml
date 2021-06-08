@@ -26,7 +26,7 @@
             tools:ignore="MissingConstraints">
         </TextView>
         <ImageView
-            android:id="@+id/addImage"
+            android:id="@+id/addLicense"
             android:layout_width="240dp"
             android:layout_height="130dp"
             android:layout_marginTop="90dp"
@@ -74,8 +74,8 @@
             android:text="- 어두운 배경에서 빛반사 없이 찍어주세요.">
         </TextView>
         <Button
-            android:id="@+id/licenseButton"
-            android:text="운전면허증 촬영"
+            android:id="@+id/ocrButton"
+            android:text="운전면허증 변환"
             android:layout_width="245dp"
             android:layout_height="44dp"
             android:layout_marginTop="44dp"

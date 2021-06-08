@@ -3,19 +3,28 @@ package com.example.pickt.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.Permission;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,36 +39,37 @@ public class RegisterLicenseActivity extends AppCompatActivity {
     private Boolean isPermission = true;
 
     // request code
-    private static final int PICK_FROM_ALBUM = 1;
-    private static final int PICK_FROM_CAMERA = 2;
+    private static final int GET_GALLERY_IMAGE = 200;
 
-    private File tempFile;
+    private ImageView addImageButton;
+    private Button ocrButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_license);
 
-        getCameraPermission();
+        addImageButton = (ImageView) findViewById(R.id.addLicense);
+        ocrButton = (Button)findViewById(R.id.ocrButton);
 
-        findViewById(R.id.licenseButton).setOnClickListener(new View.OnClickListener(){
+        ocrButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View view){
-                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                getMenuInflater().inflate(R.menu.picture, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.camera){
+            public void onClick(View v) {
 
-                        }
-                        else if (item.getItemId() == R.id.gallery){
+            }
+        });
 
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
+        // 인증 정보 load
+        final String ocrApiGwUrl = "https://47baef1c217f4730936dd5ceef8f42bb.apigw.ntruss.com/custom/v1/8758/2def4c437322fdddf9083b77ff65906d6631d48c4045f0432ea01bd80cd56c85/infer";
+        final String ocrSecretKey = "SGRCanZBenhPWkt3dVNlaUJic3JmVndzU3hyaEtKRE4=";
+
+        addImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,GET_GALLERY_IMAGE);
             }
         });
     }
@@ -67,63 +77,25 @@ public class RegisterLicenseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==PICK_FROM_ALBUM){
-            Uri imageUri = data.getData();
-            Cursor cursor = null;
-            try {
-                /*
-                Uri 스키마를
-                content:/// 에서 file:/// 로 변경한다.
-                */
-                String[] projectedImage = {MediaStore.Images.Media.DATA};
 
-                assert imageUri != null;
-                cursor = getContentResolver().query(imageUri, projectedImage, null, null, null);
-
-                assert cursor != null;
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-                cursor.moveToFirst();
-
-                tempFile = new File(cursor.getString(column_index));
-            }finally {
-                if (cursor != null){
-                    cursor.close();
+        if(requestCode==GET_GALLERY_IMAGE){
+            if (resultCode == RESULT_OK){
+                try {
+                    InputStream inputStream = getContentResolver().openInputStream(data.getData());
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    Bitmap img = BitmapFactory.decodeStream(inputStream);
+                    inputStream.close();
+                    addImageButton.setImageBitmap(img);
+                }catch (IOException ioException){
+                    ioException.printStackTrace();
                 }
+            }
+            else if (resultCode==RESULT_CANCELED){
+                Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void takePhoto(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        try {
-            tempFile = createImageFile();
-        }catch (IOException e){
-            Toast.makeText(this, "이미지 처리 오류! 다시 시도해주세요", Toast.LENGTH_SHORT).show();
-            finish();
-            e.printStackTrace();
-        }
-        if (tempFile!= null){
-            Uri imageUri = Uri.fromFile(tempFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            startActivityForResult(intent, PICK_FROM_ALBUM);
-        }
-    }
-
-    private File createImageFile() throws IOException{
-        // 이미지 파일
-        String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
-        String imageFileName = "pickt"+timeStamp+"_";
-
-        // 이미지가 저장될 폴더 이름
-        File storageDir = new File(Environment.getExternalStorageDirectory()+"/pickt/");
-        if (!storageDir.exists()) storageDir.mkdirs();
-
-        // 빈 파일 생성
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
-        return image;
-    }
 
     private void getCameraPermission(){
         PermissionListener permissionListener = new PermissionListener() {
@@ -145,4 +117,13 @@ public class RegisterLicenseActivity extends AppCompatActivity {
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
     }
+
+    /*
+    public class PapagoNmtTask extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+        }
+    }
+     */
 }
