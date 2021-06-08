@@ -61,7 +61,7 @@
             android:inputType="textPassword"
             android:theme="@style/Theme.Pickt">
         </EditText>
-        <EditText
+        <!--EditText
             android:id="@+id/confirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:letterSpacing="0.01"
             android:lineSpacingExtra="11sp"
             android:text="password가 일치하지 않습니다.">
-        </TextView>
+        </TextView-->
         <EditText
             android:id="@+id/userName"
             android:layout_width="match_parent"
@@ -130,7 +130,7 @@
         </EditText>
         <Button
             android:layout_gravity="center"
-            android:id="@+id/signupButton"
+            android:id="@+id/nextButton"
             android:text="Next"
             android:layout_marginTop="62.5dp"
             android:layout_width="135dp"

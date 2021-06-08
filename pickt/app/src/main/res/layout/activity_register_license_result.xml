@@ -26,13 +26,14 @@
             tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:id="@+id/licenseType"
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textSize="20dp"
-            android:text="1종 보통">
+            android:text="면허 종류">
         </TextView>
 
         <TextView
@@ -49,13 +50,14 @@
             tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:id="@+id/licenseNumber"
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textSize="20dp"
-            android:text="서울01-123456078">
+            android:text="면허 번호">
         </TextView>
 
         <TextView
@@ -72,18 +74,19 @@
             tools:ignore="MissingConstraints">
         </TextView>
         <TextView
+            android:id="@+id/licensePrimaryKey"
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textSize="20dp"
-            android:text="8271AO">
+            android:text="고유 번호">
         </TextView>
 
         <Button
-            android:id="@+id/licenseButton"
-            android:text="제출 하기"
+            android:id="@+id/registerButton"
+            android:text="등록 하기"
             android:layout_width="245dp"
             android:layout_height="44dp"
             android:layout_marginTop="70dp"
