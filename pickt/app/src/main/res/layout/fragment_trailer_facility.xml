@@ -26,7 +26,7 @@
             android:textColor="#454545"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="-1sp"
-            android:text="편의 정보"/>
+            android:text="편의 정보 및 비용"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:textColor="#a7000000"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="8sp"
-            android:text="수용인원, 편의시설 등을 작성해주세요.">
+            android:text="수용인원, 편의시설, 비용정보등을 작성해주세요.">
         </TextView>
 
         <TextView
@@ -54,7 +54,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/TrailerName"
+            android:id="@+id/TrailerCapacity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -84,6 +84,54 @@
             android:text="편의 시설">
         </TextView>
 
+        <EditText
+            android:id="@+id/TrailerFacility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="ex) 인덕션"
+            android:textColorHint="#a7000000"
+            android:maxLength="30"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-1sp"
+            android:colorAccent="#2cdedede"
+            android:colorControlNormal="#2cdedede">
+        </EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32.5dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#454545"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="9sp"
+            android:text="비용정보">
+        </TextView>
+
+        <EditText
+            android:id="@+id/TrailerCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="14,780원"
+            android:inputType="number"
+            android:textColorHint="#a7000000"
+            android:maxLength="30"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-1sp"
+            android:colorAccent="#2cdedede"
+            android:colorControlNormal="#2cdedede">
+        </EditText>
+
         <ListView
             android:id="@+id/facilityList"
             android:layout_width="match_parent"
@@ -95,7 +143,7 @@
             android:id="@+id/FacilityNextButton"
             android:layout_width="115dp"
             android:layout_height="41dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="right"
             android:background="@drawable/small_button"
             android:fontFamily="sans-serif"

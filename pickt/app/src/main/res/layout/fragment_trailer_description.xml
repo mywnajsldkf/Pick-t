@@ -48,7 +48,7 @@
             android:minLines="2"
             android:maxLines="10"
             android:scrollbars="vertical"
-            android:id="@+id/TrailerName"
+            android:id="@+id/TrailerDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -65,7 +65,7 @@
         </EditText>
 
         <Button
-            android:id="@+id/ImageNextButton"
+            android:id="@+id/TrailerRegisterButton"
             android:layout_width="115dp"
             android:layout_height="41dp"
             android:layout_marginTop="100dp"
