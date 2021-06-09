@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Layout;
 import android.util.Base64;
@@ -32,6 +33,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -39,16 +42,20 @@ import static android.content.ContentValues.TAG;
 
 public class TrailerImageFragment extends Fragment {
 
+    private static String UploadImgPath;
     private final int GET_GALLERY_IMAGE = 200;
 
     private ImageView imageView;
     private Button nextButton;
     public String revertedImage;
 
+    File tempSelectFile;
+
     Uri imagePath;
     Uri imageUri;
     private String imgPath;
     private String imgName;
+    private String stringImage;
 
     public static TrailerImageFragment newInstance() {
         return new TrailerImageFragment();
@@ -83,22 +90,15 @@ public class TrailerImageFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                imagePath = getImageUri();
-
-                File file = null;
-                try {
-                    file = createFileFromUri(imagePath);
-                }catch (IOException e){
-
-                }
-
-                bundle.putString("imageUri", String.valueOf(file));
+                imgPath = getStringImage();
+                // System.out.println("받아온 imgPath" + imgPath);
+                bundle.putString("uri", imgPath);
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Fragment infoFragment = new TrailerInfoFragment();  // fragment 생성
                 infoFragment.setArguments(bundle);
-                System.out.println("imagePath가 과연나올까...? 나온다면 성공!!!!!ㅎㅎ!! "+ imagePath);
-                System.out.println("imagePath가 과연나올까...? 나온다면 성공ㅎㅎ!! "+ file);
+                // System.out.println("imagePath가 과연나올까...? 나온다면 성공!!!!!ㅎㅎ!! "+ imagePath);
+                // System.out.println("imagePath가 과연나올까...? 나온다면 성공ㅎㅎ!! "+ file);
                 // ((TrailerRegisterActivity)getActivity()).replaceFragment(TrailerInfoFragment.newInstance());
                 transaction.replace(R.id.RegisterTrailerActivity, infoFragment);
                 transaction.commit();
@@ -108,22 +108,6 @@ public class TrailerImageFragment extends Fragment {
         return v;
     }
 
-    // 보내기에 적당하게 바꿀거다
-    File createFileFromUri(Uri uri) throws IOException{
-        InputStream is = getActivity().getContentResolver().openInputStream(uri);
-        File file = new File(String.valueOf(getActivity().getCacheDir()));
-        file.createNewFile();
-        FileOutputStream fos = new FileOutputStream(file);
-        byte[] buf = new byte[2046];
-        int read = -1;
-        while ((read = is.read(buf)) != -1) {
-            fos.write(buf, 0, read);
-        }
-        fos.flush();
-        fos.close();
-        return file;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         Log.d(TAG,"onActivityResult()");
@@ -131,31 +115,26 @@ public class TrailerImageFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null){
             try {
+
+
                 /*
-                // Uri에서 이미지 이름을 얻어온다.
-                String name_Str = getImageNameToUri(data.getData());
-                System.out.println("이미지 이름 얻어옴 "+name_Str);
-                Uri uri = data.getData();
-                imageUri = uri;
-                // setImageUri(imageUri);
-
-                 */
-
                 Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 System.out.println("image_bitmap 출력"+image_bitmap); // android.graphics.Bitmap@35d5cbc
+                 */
 
+                // 이미지 저
                 InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(inputStream);
+                // System.out.println("이미지 비트맵 형식으로 출력"+img);
                 inputStream.close();
-                // 이미지 표시
                 imageView.setImageBitmap(img);
-
-                // Uri에서 이미지 이름을 얻어온다.
-
                 /*
-                Uri uri = data.getData();
-                imageUri = uri;
+                saveBitmaptoJpeg(img, "trailers", "Trailer");
+                System.out.println("Jpeg형식의 bitmap 출력"+img);
                  */
+
+                setStringImage(BitmapToString(img));
+                // System.out.println("String으로 바뀐 것 출력"+BitmapToString(img));
 
             }catch (Exception e){
                 e.printStackTrace();
@@ -166,31 +145,45 @@ public class TrailerImageFragment extends Fragment {
         }
     }
 
-    // Uri로부터 파일명 추
-    private String getImageNameToUri(Uri data) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getActivity().managedQuery(data, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+    public static void saveBitmaptoJpeg(Bitmap bitmap, String folder, String name){
+        String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String folder_name="/"+folder+"/";
+        String file_name = name+".jpg";
+        String string_path = ex_storage+folder_name;
+        UploadImgPath = string_path+file_name;
 
-        cursor.moveToFirst();
+        //boolean translatedBitmap;
 
-        imgPath = cursor.getString(column_index);
-        imgName = imgPath.substring(imgPath.lastIndexOf("/") + 1);
-
-        return imgName;
+        File file_path;
+        try{
+            file_path = new File(string_path);
+            // 파일 저장소가 없으면 디렉토리 생성
+            if (!file_path.isDirectory()){
+                file_path.mkdirs();
+            }
+            FileOutputStream outputStream = new FileOutputStream(string_path+file_name);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100, outputStream);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
-    public void setImageUri(Uri imageUri){
-        this.imageUri = imageUri;
+    public void setStringImage(String stringImage){
+        this.stringImage = stringImage;
     }
 
-    public Uri getImageUri(){
-        return imageUri;
+    public String getStringImage(){
+        return stringImage;
     }
 
-    /*
-    String getFileNameFromUri(Uri uri){
-        Cursor returnCursor = getContentResolver().openInputStream(uri);
+    public static String BitmapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
+        byte[] bytes = baos.toByteArray();
+        String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
+        return temp;
     }
-     */
 }

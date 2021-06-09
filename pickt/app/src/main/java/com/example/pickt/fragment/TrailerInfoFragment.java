@@ -50,10 +50,10 @@ public class TrailerInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         if (getArguments() != null){
-            String setUri = getArguments().getString("imageUri");
+            String setUri = getArguments().getString("uri");
             setUri(setUri);
             // result_Uri = Uri;
-            // System.out.println("Uri를 출력해볼까?!!!!!"+Uri);
+            System.out.println("Uri를 출력해볼까?!!!!!"+setUri);
         }else {
             // System.out.println("뭐야 비었잖아");
         }
